@@ -31,9 +31,9 @@ class AgentState(TypedDict):
 
 def _make_llm() -> ChatOpenAI:
     return ChatOpenAI(
-        model=os.getenv("MODEL", "gemini-2.0-flash"),
-        openai_api_key=os.getenv("GEMINI_API_KEY", ""),
-        openai_api_base="https://generativelanguage.googleapis.com/v1beta/openai/",
+        model=os.getenv("MODEL", "gpt-4o-mini"),
+        openai_api_key=os.getenv("LLM_API_KEY", ""),
+        openai_api_base=os.getenv("LLM_BASE_URL", "https://openai.bothub.chat/v1"),
         temperature=0,
     ).bind_tools(TOOLS)
 

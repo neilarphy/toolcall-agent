@@ -22,8 +22,8 @@ class ChatResponse(BaseModel):
 
 @app.post("/v1/chat/completions", response_model=ChatResponse)
 async def chat(req: ChatRequest):
-    if not os.getenv("GEMINI_API_KEY"):
-        raise HTTPException(status_code=500, detail="GEMINI_API_KEY not set")
+    if not os.getenv("LLM_API_KEY"):
+        raise HTTPException(status_code=500, detail="LLM_API_KEY not set")
 
     user_content = req.messages[-1].get("content", "") if req.messages else ""
 
@@ -50,4 +50,4 @@ async def delete_session(session_id: str):
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "agent": "DevAssist", "model": os.getenv("MODEL", "gemini-2.0-flash")}
+    return {"status": "ok", "agent": "DevAssist", "model": os.getenv("MODEL", "gpt-4o-mini")}
